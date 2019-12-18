@@ -17,7 +17,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
     private static final String TAG = "YoutubeActivity";
     static final String GOOGLE_API_KEY = "AIzaSyBJz_p02OPb71aXgqXMBgnP6ke7mNhDfSk";
-    static final String YOUTUBE_VIDEO_ID = "roDz8mMvbIg";
+    static final String YOUTUBE_VIDEO_ID = "izYiDDt6d8s";
     static final String YOUTUBE_PLAYLIST = "PLknSwrodgQ72X4sKpzf5vT8kY80HKcUSe";
 
 
@@ -39,6 +39,9 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
         Toast.makeText(this, "Initialized Youtube Player successfully", Toast.LENGTH_LONG).show();
+
+        youTubePlayer.setPlaybackEventListener(playbackEventListener);
+        youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
 
         if (!wasRestored) {
             youTubePlayer.cueVideo(YOUTUBE_VIDEO_ID);
@@ -71,7 +74,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
         @Override
         public void onStopped() {
-
+            Toast.makeText(YoutubeActivity.this, "Video has stopped", Toast.LENGTH_LONG).show();
         }
 
         @Override
